@@ -68,13 +68,6 @@ jobs:
           zip -r -X -y ../VSCodium-darwin-${VSCODE_ARCH}-${MS_TAG}.zip ./*.app
         if: env.SHOULD_BUILD == 'yes' && env.SHOULD_DEPLOY == 'yes'
 
-      - name: DMG the release
-        run: |
-          pushd "VSCode-darwin-${VSCODE_ARCH}"
-          npx create-dmg VSCodium.app ..
-          mv "../VSCodium ${MS_TAG}.dmg" "../VSCodium.${VSCODE_ARCH}.${MS_TAG}.dmg"
-          popd
-        if: env.SHOULD_BUILD == 'yes' && env.SHOULD_DEPLOY == 'yes'
 
       - name: Generate shasums
         run: ./sum.sh
@@ -87,7 +80,6 @@ jobs:
           tag_name: ${{ env.MS_TAG }}
           files: |
             ./*.zip
-            ./*.dmg
             ./*.sha256
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
