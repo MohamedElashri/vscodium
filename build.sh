@@ -20,6 +20,7 @@ if [[ "$SHOULD_BUILD" == "yes" ]]; then
   yarn gulp minify-vscode
 
   if [[ "$OS_NAME" == "osx" ]]; then
+    npm set npm_config_arch=arm64
     yarn gulp "vscode-darwin-${VSCODE_ARCH}-min-ci"
   elif [[ "$OS_NAME" == "windows" ]]; then
     . ../build/windows/rtf/make.sh
