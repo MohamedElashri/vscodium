@@ -3,8 +3,7 @@ name: macos_build
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 * * * *'
-  push:
+    - cron: '0 12 30 * *'
   pull_request:
     branches: [ master ]
 
